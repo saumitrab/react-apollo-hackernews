@@ -4,3 +4,7 @@ graphcool init --schema ./initial-schema.graphql --name Hackernews
 create-react-app hackernews-react-apollo
 
 mv project.graphcool hackernews-react-apollo/
+
+# to get the endpoints
+cd hackernews-react-apollo/
+graphcool endpoints
