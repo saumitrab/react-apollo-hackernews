@@ -1,32 +1,37 @@
 import React, { Component } from 'react';
-
+import { graphql, gql } from 'react-apollo';
 import Link from './Link';
 
 class ListOfLinks extends Component {
   render() {
 
-    const linksToRender = [
-      {
-        id: 1,
-        description: 'Awesome deals!',
-        url: 'https://www.groupon.com/',
-      },
-      {
-        id: 2,
-        description: 'Socialize a bit',
-        url: 'https://www.livingsocial.com',
-      }
-    ];
+    if (this.props.allLinksQuery && this.props.allLinksQuery.loading) {
+      return <div>Loading...</div>;
+    }
 
-
+    if (this.props.allLinksQuery && this.props.allLinksQuery.error) {
+      return <div>Error!</div>;
+    }
+    
     return (
     <div>
       {
-        linksToRender.map(l => <Link key={l.id} link={l} />)
+        this.props.allLinksQuery.allLinks.map(l => <Link key={l.id} link={l} />)
       }
     </div>
     );
   }
 }
 
-export default ListOfLinks;
+const ALL_LINKS_QUERY = gql`
+  query allLinksQuery {
+    allLinks {
+      id
+      createdAt
+      description
+      url
+    }
+  }
+`
+
+export default graphql(ALL_LINKS_QUERY, { name: 'allLinksQuery' } )(ListOfLinks);
