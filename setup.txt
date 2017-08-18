@@ -1,0 +1,6 @@
+npm i -g graphcool --registry=https://registry.npmjs.com
+graphcool init --schema ./initial-schema.graphql --name Hackernews
+
+create-react-app hackernews-react-apollo
+
+mv project.graphcool hackernews-react-apollo/
