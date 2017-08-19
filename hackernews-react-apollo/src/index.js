@@ -1,10 +1,11 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './components/App'
-import registerServiceWorker from './registerServiceWorker'
-import './styles/index.css'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import App from './components/App';
+import registerServiceWorker from './registerServiceWorker';
+import './styles/index.css';
 // 1
-import { ApolloProvider, createNetworkInterface, ApolloClient } from 'react-apollo'
+import { ApolloProvider, createNetworkInterface, ApolloClient } from 'react-apollo';
 
 // 2
 const networkInterface = createNetworkInterface({
@@ -18,9 +19,11 @@ const client = new ApolloClient({
 
 // 4
 ReactDOM.render(
-  <ApolloProvider client={client}>
-    <App />
-  </ApolloProvider>
+  <BrowserRouter>
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
+  </BrowserRouter>
   , document.getElementById('root')
 )
 registerServiceWorker()
