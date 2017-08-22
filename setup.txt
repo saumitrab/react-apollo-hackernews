@@ -8,3 +8,36 @@ mv project.graphcool hackernews-react-apollo/
 # to get the endpoints
 cd hackernews-react-apollo/
 graphcool endpoints
+
+# enable authentication
+graphcool console
+Integrations -> Email and Password authentication -> enable
+
+# Generated mutations
+# createUser(authProvider: { email: { email, password } })
+# signinUser(email: { email, password })
+
+# changes made on server, update project.graphcool file.
+graphcool pull
+
+git diff project.graphcool
+>> -# version: 2
+>> +# version: 3
+>>
+>>  type User implements Node {
+>>   createdAt: DateTime!
+>> +  email: String @isUnique
+>>   id: ID! @isUnique
+>> +  password: String
+>>   updatedAt: DateTime!
+>> }
+# Updated the schema version to 2 and add email and password to 'User'
+
+# Update local schema to reflect the relation in User and Link
+# User: 
+>> links: [Link!]! @relation(name: "UsersLinks")
+# Link:
+>> postedBy: User @relation(name: "UsersLinks") 
+
+# push schema to server
+graphcool push

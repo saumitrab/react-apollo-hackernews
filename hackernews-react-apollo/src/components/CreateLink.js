@@ -54,12 +54,16 @@ class CreateLink extends Component {
 }
 
 const CREATE_LINK_MUTATION = gql`
-  mutation CreateLinkMutation($description: String!, $url: String!) {
-    createLink(description: $description, url: $url) {
+  mutation CreateLinkMutation($description: String!, $url: String!, $postedById: ID!) {
+    createLink(description: $description, url: $url, postedById: $postedById) {
       id
       createdAt
       description
       url
+      postedBy {
+        id
+        name
+      }
     }
   }
 `
