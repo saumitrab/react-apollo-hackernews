@@ -7,6 +7,7 @@ import ListOfLinks from './ListOfLinks';
 import CreateLink from './CreateLink';
 import Login from './Login';
 import Header from './Header';
+import Search from './Search';
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
       <Header />
       <div className='ph3 pv1 background-gray'>
         <Switch>
+          <Route exact path='/search' component={Search}/>
           <Route exact path='/login' component={Login}/>
           <Route exact path='/create' component={CreateLink}/>
           <Route exact path='/' component={ListOfLinks}/>
