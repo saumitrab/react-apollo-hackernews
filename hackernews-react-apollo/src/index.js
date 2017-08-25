@@ -15,7 +15,7 @@ const networkInterface = createNetworkInterface({
 })
 
 // Middleware to fill in token info with the request headers if 
-// the token is available in the current session.
+// the token is available in the current session. 
 networkInterface.use([
   {
     applyMiddleware(req, next) {
